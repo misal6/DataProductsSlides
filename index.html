@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Market Futures</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Stock Market Futures">
+  <meta name="author" content="Misal6">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/css/solarized_light.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/slides" 
+    src="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Stock Market Futures</h1>
+    <h2>Forecasting major European Indexes</h2>
+    <p>Misal6<br/>Stock Futures Analyst</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="quote" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Motivation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><q> Weather you are a Fund manager having billions in your portfolio,<br> or an employee contributing to 401K plans which invests in stocks,<br> knowing the direction and <b><font color="darkblue">future returns</font></b> on your invested capital is of vital interest.</q></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="quote" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Projection</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><p>Suppose you want to invest <b><font color="darkblue">100</font></b> pounds in London Stock market (FTSE). <br>
+You would want to know whats the typical return after one year on your investment.<p></p>
+
+<pre><code>## [1] &quot;Return on Investment : 8%&quot;
+</code></pre>
+
+<p>Expect your investment to be <b><font color="darkblue">108</font></b> pounds at the end of one year.</p>
+
+<p>Code:</p>
+
+<pre><code>library(datasets)
+library(forecast)
+idxdata=ts(EuStockMarkets[,&quot;FTSE&quot;])
+idxarima=auto.arima(idxdata)    
+fcst=forecast(idxarima,h=260)
+resfcst=tail(as.data.frame(fcst),1)
+curval=round(tail(idxdata,1))
+fctval=round(resfcst[,1])
+pct=round(((fctval-curval)/curval)*100)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Solution</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>If you wanted to compare major indexes and project for variable time lengths, the solution is an interactive dashboard that will allow you to &quot;choose&quot; and &quot;produce&quot; as per you requirement.</p>
+
+<p>This is specifically the purpose of this simple web base application which can be accessed from anywhere and from any device connected to the internet.</p>
+
+<p><a href="https://misal6.shinyapps.io/stock_index_forecast/">Stock Market Futures</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Wrapup</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Thank you for visiting this app.</p>
+
+<p>Complete code for the application is <a href="https://github.com/misal6/DataProductsCoursera">here.</a></p>
+
+<p>Code that produced these slides is <a href="https://github.com/misal6/DataProductsCoursera">here.</a></p>
+
+<p>This is the Data Products course project for Coursera.
+If you would like to develop great data products, <a href="https://www.coursera.org/specialization/jhudatascience/1?utm_medium=listingPage">this</a> is the best place to start.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Motivation'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Projection'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Solution'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Wrapup'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

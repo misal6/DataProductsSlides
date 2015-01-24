@@ -1,0 +1,12 @@
+library(shiny)
+library(datasets)
+library(forecast)
+
+idxdata=ts(EuStockMarkets[,"FTSE"])
+idxarima=auto.arima(idxdata)    
+fcst=forecast(idxarima,h=260)
+resfcst=tail(as.data.frame(fcst),1)
+curval=round(tail(idxdata,1))
+fctval=round(resfcst[,1])
+pct=round(((fctval-curval)/curval)*100)
+print(paste("Return on Investment : ",pct,"%", sep = ""))
